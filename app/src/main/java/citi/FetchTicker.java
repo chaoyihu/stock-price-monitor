@@ -10,30 +10,27 @@ import java.io.BufferedReader;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 
-public class FetchPrice {
+public class FetchTicker {
 
-    private String[] result; // timestamp, price, unit
+    private String ticker = "None";
 
-    public String[] getResult() {
-        return result;
+    public String getResult() {
+        return ticker;
     }
 
-    public void fetch(String ticker) {
-        
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String ts = timestamp.toString();
+    public void fetch(String stockname) {
 
         try {
-            URL url = new URL("https://www.google.com/finance/quote/" + ticker);
-            System.out.println("Fetching Price:" + url);
+            String[] words = stockname.split(" ");
+            URL url= new URL("https://www.google.com/search?q=stock+ticker+symbol+" + String.join("+", words));
+            System.out.println(url);
             
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -47,17 +44,12 @@ public class FetchPrice {
                 String html = response.toString();
                 Document document = Jsoup.parse(html);
 
-                String raw = document.select(".kf1m0").first().text();
-                String unit = "";
-                String price = raw;
-                if (raw.charAt(0) == '$') {
-                    unit = "USD";
-                    price = raw.substring(1);
-                }
-                result = new String[] {ts, price, unit};
+                String raw = document.select("div.iAIpCb[data-attrid=\"subtitle\"]").text();
+                String[] ls = raw.split(":");
+                ticker = ls[1].trim() + ":" + ls[0].trim();
+                System.out.println(ticker);
             } else {
-                result = new String[] {ts, "", ""};
-                System.out.println("Failed to fetch data. Response Code: " + responseCode);
+                System.out.println("Failed to fetch ticker. Response Code: " + responseCode);
             }
             connection.disconnect();
         } catch (IOException e) {
@@ -65,3 +57,6 @@ public class FetchPrice {
         }
     }
 }
+        
+        
+        
