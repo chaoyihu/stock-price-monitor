@@ -149,7 +149,15 @@ public class App extends Application {
         if (args.length > 0) {
             stockname = args[0];
         }
+        System.out.println("   _    _                                          ");
+        System.out.println("  | \\  / |    _       _   #   |      _        _    ");
+        System.out.println("  |  \\/  |  /   \\  |/  |  |  -|--  /   \\   | /     ");
+        System.out.println("  |      | |     | |   |  |   |   |     |  |       ");
+        System.out.println("  |      |  \\ _ /  |   |  |   |/   \\ _ /   |       ");
+        System.out.println("                                                   ");
+        System.out.println("###################################################");
         System.out.println("Querying" + stockname + "stock price every 5 seconds... Start now!");
+        System.out.println("###################################################");
         launch(args);
     }
 }

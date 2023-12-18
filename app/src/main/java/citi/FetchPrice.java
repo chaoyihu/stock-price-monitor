@@ -55,6 +55,7 @@ public class FetchPrice {
                     price = raw.substring(1);
                 }
                 result = new String[] {ts, price, unit};
+                System.out.println(ts + ": " + price + unit);
             } else {
                 result = new String[] {ts, "", ""};
                 System.out.println("Failed to fetch data. Response Code: " + responseCode);
