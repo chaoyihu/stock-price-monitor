@@ -2,6 +2,7 @@
 
 Example: `./gradlew run --args="Apple"`
 Terminal Output:
+```
    _    _
   | \  / |    _       _   #   |      _        _
   |  \/  |  /   \  |/  |  |  -|--  /   \   | /
@@ -21,3 +22,4 @@ Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
 Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
 2023-12-18 14:13:08.467: 196.94USD
 ...
+```
