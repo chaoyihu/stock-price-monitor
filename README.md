@@ -1,6 +1,7 @@
 # Stock Price Visualizer
 
-Example: `./gradlew run --args="Apple"`
+Example: Run `./gradlew run --args="Apple"`
+
 Terminal Output:
 ```
    _    _
