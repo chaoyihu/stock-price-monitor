@@ -1,4 +1,4 @@
-# Stock Price Visualizer
+# Stock Price Monitor
 
 Example: Run `./gradlew run --args="Apple"`
 
