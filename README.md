@@ -2,8 +2,12 @@
 
 Example: Run `./gradlew run --args="Apple"`
 
+Interface:
+![monitor](https://github.com/chaoyihu/stock-price-monitor/assets/90495101/9c7c3d4d-2220-43f0-b153-2cd5ea6fdc2a)
+
 Terminal Output:
 ```
+> Task :app:run
    _    _
   | \  / |    _       _   #   |      _        _
   |  \/  |  /   \  |/  |  |  -|--  /   \   | /
@@ -17,10 +21,16 @@ Apple
 https://www.google.com/search?q=stock+ticker+symbol+Apple
 AAPL:NASDAQ
 Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
-2023-12-18 14:12:46.91: 196.94USD
+2023-12-21 11:44:41.01: 194.26USD
 Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
-2023-12-18 14:12:57.759: 196.94USD
+2023-12-21 11:44:46.521: 194.26USD
 Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
-2023-12-18 14:13:08.467: 196.94USD
+2023-12-21 11:44:52.023: 194.26USD
+Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
+2023-12-21 11:44:57.551: 194.26USD
+Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
+2023-12-21 11:45:03.107: 194.28USD
+Fetching Price:https://www.google.com/finance/quote/AAPL:NASDAQ
+2023-12-21 11:45:08.802: 194.30USD
 ...
 ```
