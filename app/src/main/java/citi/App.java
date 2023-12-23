@@ -16,14 +16,12 @@ import java.util.concurrent.ThreadFactory;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
-//import java.util.Timer;
-//import java.util.TimerTask;
 import java.util.function.Consumer;
 
 
 public class App extends Application {
 
-    private static final int MAX_DATA_POINTS = 5;
+    private static final int MAX_DATA_POINTS = 20;
     private int xSeriesData = 0;
     private ConcurrentLinkedQueue<Number> pricels = new ConcurrentLinkedQueue<>();
     private ConcurrentLinkedQueue<String> timestampls = new ConcurrentLinkedQueue<>();
@@ -78,7 +76,7 @@ public class App extends Application {
                 timestampls.add(timestamp);
                 pricels.add(price);
 
-                Thread.sleep(10000);
+                Thread.sleep(5000);
                 executor.execute(this);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
@@ -119,16 +117,17 @@ public class App extends Application {
     }
 
     private float[] getRangeY() {
-        float mx = Float.MIN_VALUE;
-        float mn = Float.MAX_VALUE;
+	float avg = 0;
+	float cnt = 0;
 
         for (XYChart.Data<String, Number> data : series1.getData()) {
             float price = (float) data.getYValue();
-            mx = Math.max(mx, price);
-            mn = Math.min(mn, price);
+	    avg += price;
+	    cnt += 1;
         }
+	avg = avg / cnt;
 
-        return new float[] {mx, mn};
+        return new float[] {(float)(avg + avg * 0.0005), (float)(avg - avg * 0.0005), avg};
     }
 
     private void addDataToSeries() {
@@ -141,8 +140,8 @@ public class App extends Application {
         }
         // update
         float[] rangeY = getRangeY();
-        yAxis.setLowerBound(rangeY[1] - 10);
-        yAxis.setUpperBound(rangeY[0] + 10);
+        yAxis.setUpperBound(rangeY[0]);
+        yAxis.setLowerBound(rangeY[1]);
     }
 
     public static void main(String[] args) {
